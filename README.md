@@ -27,6 +27,7 @@ The primary goal of CodeMom is to aid beginners in navigating the vast field of 
   - **reportWebVitals.js**: Performance measurement setup.
   - **setupTests.js**: Jest setup file for custom matchers.
   - **chatbot.py**: Python script for chatbot functionality.
+  - **training.py**: Python script for training the NLP models used by the chatbot.
   - **manifest.json**: Metadata for Progressive Web App configuration.
   - **robots.txt**: Configuration file for web crawlers.
   - **Coding.html**: HTML file for coding resources.
