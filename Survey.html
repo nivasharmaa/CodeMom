@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Assessment in Computer Science</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+        }
+
+        h1 {
+            font-weight: 4000;
+            font-size: 30px;
+            font-family:'Times New Roman', Times, serif;
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: #455445;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-family:'Times New Roman', Times, serif;
+            margin-top: 8px; 
+            margin-bottom: 15px;
+            color: #768676;
+        }
+
+        form {
+            max-width: 1000px;
+            margin: 1px auto;
+            padding: 20px;
+            background-color: #9aa19c;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="radio"] {
+            margin-right: 7px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #256161;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f5f5f5;
+            font-family:'Times New Roman', Times, serif;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .hidden-message {
+            display: none;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14px;
+            color: #444;
+            margin-top: 10px;
+        }
+        
+        a {
+            color: #038963;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-text">
+            <h1>Which Tech Career Fits You Best?</h1>
+            <h2>Use this survey to reflect on these questions and have a look at possible career paths!</h2>
+        </div>
+    </header>
+    <form id="surveyForm" onsubmit="submitSurvey(event)">
+        <label>1. How interested are you in solving complex problems?</label>
+        <input type="radio" name="problemSolving" value="high"> Very interested
+        <input type="radio" name="problemSolving" value="medium"> Moderately interested
+        <input type="radio" name="problemSolving" value="low"> Slightly interested
+        <input type="radio" name="problemSolving" value="none"> Not interested
+        <hr>
+        <label>2. Have you ever programmed before?</label>
+        <input type="radio" name="programmingExperience" value="high"> Yes, I have experience with programming languages.
+        <input type="radio" name="programmingExperience" value="medium"> I have some basic understanding but need more practice.
+        <input type="radio" name="programmingExperience" value="low"> I have never programmed before.
+        <hr>
+        <label>3. How comfortable are you with mathematical concepts and calculations?</label>
+        <input type="radio" name="mathAptitude" value="high"> Very comfortable
+        <input type="radio" name="mathAptitude" value="medium"> I'm decent at math but sometimes struggle with complex calculations.
+        <input type="radio" name="mathAptitude" value="low"> I don't like calculations.
+        <hr>
+        <label>4. Are you interested in creative design and the way products look?</label>
+        <input type="radio" name="design" value="high"> Very interested
+        <input type="radio" name="design" value="medium"> Moderately interested
+        <input type="radio" name="design" value="low"> Slightly interested
+        <input type="radio" name="design" value="none"> Not interested
+        <hr>
+        <label>5. How would you describe your logical thinking skills?</label>
+        <input type="radio" name="logicalThinking" value="high"> I have strong logical thinking skills and enjoy logical puzzles.
+        <input type="radio" name="logicalThinking" value="medium"> I'm decent at logical thinking but need more practice.
+        <input type="radio" name="logicalThinking" value="low"> I find logical thinking challenging.
+        <input type="radio" name="logicalThinking" value="none"> Logical thinking is not my strong suit.
+        <hr>
+        <label>6. Do you like working with numbers and data?</label>
+        <input type="radio" name="dataAnalysis" value="high"> Yes, I enjoy working with data and extracting insights.
+        <input type="radio" name="dataAnalysis" value="medium"> I'm somewhat interested but need more knowledge.
+        <input type="radio" name="dataAnalysis" value="low"> Data analysis is not my primary interest.
+        <input type="radio" name="dataAnalysis" value="none"> I hate numbers.
+        <hr>
+        <label>7. Do you enjoy creative thinking in problem solving?</label>
+        <input type="radio" name="creative" value="high"> Yes, I'm a very curious person.
+        <input type="radio" name="creative" value="medium"> I enjoy it to a certain extent.
+        <input type="radio" name="creative" value="low"> Creativity is not my current focus, I prefer technical aspects.
+        <input type="radio" name="creative" value="none"> Not interested at all.
+
+        <button type="submit">Submit Survey</button>
+    </form>
+
+    <div id="result"></div>
+    <p id="message1" style="display: none;">
+        Review and research on your possible career options. Your next step is to gain some knowledge and experience in each field, so you get a feel of what it's like.
+    </p>
+    <p id="message2" style="display: none;">
+        Interests are not something that you get to decide. They're either inherently present or they get cultivated over time.
+    </p>
+    <p id="message3" style="display: none;">
+        However, your skillset is shaped by your background, education, and previous work experience. Have a look at our <a href="Learning.html">Learning</a> page.
+    </p>
+
+    <script>
+        function submitSurvey(event) {
+            event.preventDefault(); 
+
+            // Get user's options from the survey
+            const problemSolving = document.querySelector('input[name="problemSolving"]:checked').value;
+            const programmingExperience = document.querySelector('input[name="programmingExperience"]:checked').value;
+            const mathAptitude = document.querySelector('input[name="mathAptitude"]:checked').value;
+            const design = document.querySelector('input[name="design"]:checked').value;
+            const logicalThinking = document.querySelector('input[name="logicalThinking"]:checked').value;
+            const dataAnalysis = document.querySelector('input[name="dataAnalysis"]:checked').value;
+            const creative = document.querySelector('input[name="creative"]:checked').value;
+
+            let careerOptions = '';
+
+            if (problemSolving === 'high') {
+                careerOptions += 'Artificial Intelligence\n Data Science\n';
+            } else if (problemSolving === 'medium') {
+                careerOptions += 'Web Development\n';
+            }
+
+            // Check programming experience
+            if (programmingExperience === 'high') {
+                careerOptions += 'Software Development\n Database Administration\n';
+            } else if (programmingExperience === 'medium') {
+                careerOptions += 'System Administration\n';
+            } else if (programmingExperience === 'low') {
+                careerOptions += 'Technical Support\n';
+            } 
+
+            // Check math aptitude
+            if (mathAptitude === 'high') {
+                careerOptions += 'Data Science\n Machine Learning\n';
+            } else if (mathAptitude === 'medium') {
+                careerOptions += 'Business Analytics\n';
+            } else if (mathAptitude === 'low') {
+                careerOptions += 'Project Management\n';
+            }
+
+            // Check design interest
+            if (design === 'high') {
+                careerOptions += 'UI/UX\n Graphic Design\n';
+            } else if (design === 'medium') {
+                careerOptions += 'Web Design';
+            } else if (design === 'low') {
+                careerOptions += 'System Administration';
+            }
+
+            // Check logical thinking
+            if (logicalThinking === 'high') {
+                careerOptions += 'Software Engineering\n Computer Programming\n';
+            } else if (logicalThinking === 'medium') {
+                careerOptions += 'Database Management\n Network Administration\n';
+            }
+
+            // Check data analysis interest
+            if (dataAnalysis === 'high') {
+                careerOptions += 'Data Analytics\n';
+            } else if (dataAnalysis === 'medium') {
+                careerOptions += 'Marketing Analyst\n, Financial Analyst\n';
+            } 
+
+            // Check creative thinking
+            if (creative === 'high') {
+                careerOptions += 'Game Developer\n Product Manager\n';
+            } else if (creative === 'medium') {
+                careerOptions += 'User Experience Designer\n';
+            } 
+
+            // To display career options in the result section
+            document.getElementById('result').innerHTML = '<strong>Suitable Career Options:</strong><br>' + careerOptions.replace(/\n/g, '<br>');
+
+            document.getElementById('message1').style.display = 'block';
+            document.getElementById('message2').style.display = 'block';
+            document.getElementById('message3').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
