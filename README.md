@@ -1,4 +1,4 @@
-# CodeMom
+# CodeMom - Curating Your Path to CS Success
 
 ## Overview
 CodeMom is a comprehensive web application developed during HackRU, designed to provide personalized assistance and resources to beginners in coding and computer science. By leveraging natural language processing (NLP) models, the application offers an interactive chatbot that responds to user queries, making learning more accessible and engaging. The project integrates React for a dynamic user interface, Python for backend chatbot logic, and various HTML files to create a holistic educational platform.
